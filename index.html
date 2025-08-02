@@ -177,7 +177,7 @@
 </head>
 <body>
 
-  <!-- Botão de Tela Cheia -->
+  <!-- Botão Tela Cheia -->
   <button class="fullscreen-btn" id="btnTelaCheia">Tela Cheia</button>
 
   <!-- Box lateral esquerda com as três imagens -->
@@ -198,7 +198,7 @@
   </div>
 
   <script>
-    // Botão Tela Cheia
+    // Código para o botão de tela cheia
     document.getElementById('btnTelaCheia').addEventListener('click', function() {
       if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen();
@@ -209,8 +209,18 @@
       }
     });
 
-    const preConfigurados = [1, 25, 26, 42, 49, 59];
+    // Função para decodificar os números pré-configurados (base64 -> array)
+    function decodificarResposta(str) {
+      const decoded = atob(str); // decodifica base64 para string, ex.: "1,25,26,42,49,59"
+      return decoded.split(",").map(Number);
+    }
+
+    // Base64 dos números corretos "1,25,26,42,49,59"
+    const respostaBase64 = "MSwyNSwyNiw0Miw0OSw1OQ==";
+    const preConfigurados = decodificarResposta(respostaBase64);
+
     const painel = document.getElementById('painelNumeros');
+
     for (let i = 1; i <= 60; i++) {
       const num = document.createElement('div');
       num.textContent = i.toString().padStart(2, '0');
